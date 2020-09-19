@@ -3,8 +3,8 @@ FROM ubuntu:18.04
 
 # Create users
 RUN \
-  adduser crawl && \
-  adduser crawl-dev && \
+  useradd -ms /bin/bash crawl && \
+  useradd -ms /bin/bash crawl-dev && \
   id -u crawl > /root/crawluid && \
   id -g crawl > /root/crawlgid && \
   id -u crawl-dev > /root/crawl-devuid && \
@@ -32,8 +32,8 @@ RUN \
   locale-gen en_US.UTF-8 && \
   locale-gen en_US.UTF-8 && \
   dpkg-reconfigure locales && \
-  adduser crawl && \
-  adduser crawl-dev && \
+  useradd -ms /bin/bash crawl && \
+  useradd -ms /bin/bash crawl-dev && \
   CRAWLUID=$(cat /root/crawluid); && \
   CRAWLGID=$(cat /root/crawlgid); && \
   CRAWLDEVUID=$(cat /root/crawl-devuid); && \
@@ -46,14 +46,15 @@ RUN \
   chmod 666 /home/crawl/DGL/dev/ptmx
 
 # Create crawl-dev dirs
+USER crawl-dev
+WORKDIR /home/crawl-dev
 RUN \
-  su crawl-dev && \
   mkdir /home/crawl-dev/logs && \
   mkdir /home/crawl-dev/run
 
 # Download dgamelaunch
 RUN \
-  cd && \
+  cd ~ && \
   git clone git://github.com/crawl/dgamelaunch.git && \
   git clone git://github.com/crawl/dgamelaunch-config.git && \
   git clone git://github.com/crawl/sizzell.git
