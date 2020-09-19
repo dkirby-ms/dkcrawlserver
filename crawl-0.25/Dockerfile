@@ -3,30 +3,30 @@ FROM ubuntu:18.04
 
 # Create users
 RUN \
-  sudo adduser crawl \
-  sudo adduser crawl-dev \
+  adduser crawl \
+  adduser crawl-dev \
   id -u crawl > /root/crawluid \
   id -g crawl > /root/crawlgid \
   id -u crawl-dev > /root/crawl-devuid \
   id -g crawl-dev > /root/crawl-devgid \
-  sudo usermod -G root -a crawl \
-  sudo usermod -G root -a crawl-dev \
-  sudo usermod -G www-data -a crawl \
-  sudo usermod -G www-data -a crawl-dev \
-  sudo usermod -G crawl -a root \
-  sudo usermod -G crawl -a www-data \
-  sudo usermod -G crawl-dev -a root \
-  sudo usermod -G crawl-dev -a www-data
+  usermod -G root -a crawl \
+  usermod -G root -a crawl-dev \
+  usermod -G www-data -a crawl \
+  usermod -G www-data -a crawl-dev \
+  usermod -G crawl -a root \
+  usermod -G crawl -a www-data \
+  usermod -G crawl-dev -a root \
+  usermod -G crawl-dev -a www-data
 
 # Set up chroot
 RUN \
   debootstrap bionic /home/crawl/DGL/ \
-  sudo cp /etc/resolv.conf /home/crawl/DGL/etc/resolv.conf \
-  sudo cp /etc/apt/sources.list /home/crawl/DGL/etc/apt/
+  cp /etc/resolv.conf /home/crawl/DGL/etc/resolv.conf \
+  cp /etc/apt/sources.list /home/crawl/DGL/etc/apt/
 
 # Install prerequisites
 RUN \
-  sudo chroot /home/crawl/DGL \
+  chroot /home/crawl/DGL \
   apt update && apt upgrade \
   apt install bzip2 python-minimal ncurses-term locales-all sqlite3 libpcre3 liblua5.1-0 locales autoconf build-essential lsof bison libncursesw5-dev libsqlite3-dev flex sudo libbot-basicbot-perl \
   locale-gen en_US.UTF-8 \
@@ -54,7 +54,7 @@ RUN \
 # Download dgamelaunch
 RUN \
   cd \
-  git  clone git://github.com/crawl/dgamelaunch.git \
+  git clone git://github.com/crawl/dgamelaunch.git \
   git clone git://github.com/crawl/dgamelaunch-config.git \
   git clone git://github.com/crawl/sizzell.git
 
@@ -63,8 +63,8 @@ RUN \
   cd dgamelaunch \
   ./autogen.sh --enable-debugfile --enable-sqlite --enable-shmem \
   make \
-  sudo make install \
-  sudo cp ee virus /home/crawl/DGL/bin
+  make install \
+  cp ee virus /home/crawl/DGL/bin
 
 # Configure sudo access
 # RUN \
