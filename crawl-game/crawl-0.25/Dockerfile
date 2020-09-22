@@ -6,11 +6,11 @@ FROM ubuntu:18.04
 
 # Install prerequisites
 RUN \
-  apt-get --yes --force-yes update && apt upgrade && \
-  apt-get --yes --force-yes install bzip2 python-minimal ncurses-term locales-all sqlite3 libpcre3 liblua5.1-0 locales autoconf build-essential lsof bison libncursesw5-dev libsqlite3-dev flex sudo libbot-basicbot-perl && \
+  apt-get --yes update && apt upgrade && \
+  apt-get --yes install bzip2 python-minimal ncurses-term locales-all sqlite3 libpcre3 liblua5.1-0 locales autoconf build-essential lsof bison libncursesw5-dev libsqlite3-dev flex sudo libbot-basicbot-perl && \
   locale-gen en_US.UTF-8 && \
-  locale-gen en_US.UTF-8 && \
-  dpkg-reconfigure locales
+  locale-gen en_US.UTF-8 
+ # dpkg-reconfigure locales
 
 # Create crawl-dev dirs
 RUN \
