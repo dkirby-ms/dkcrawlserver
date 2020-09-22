@@ -24,4 +24,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag crawl25:$(date +%s) --build-arg crawlversion=crawl-git
+      run: docker build . --file Dockerfile --tag crawl25:$(date +%s) --build-arg crawlversion=crawl-0.25

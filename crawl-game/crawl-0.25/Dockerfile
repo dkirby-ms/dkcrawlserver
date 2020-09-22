@@ -1,8 +1,8 @@
-# ARGS
-ARG crawlversion
-
 # Pull base image.
 FROM ubuntu:18.04
+
+# ARGS
+ARG crawlversion
 
 # Install prerequisites
 RUN \
