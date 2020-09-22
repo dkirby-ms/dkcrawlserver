@@ -44,10 +44,8 @@ RUN \
   mkdir dgldir/rcfiles/ && \
   mkdir dgldir/ttyrec/ && \
   mkdir dgldir/data/menus/ && \
-  mkdir dgldir/inprogress/
-
+  mkdir dgldir/inprogress/ && \
 # Create crawl version specific directories
-RUN \
   mkdir dgldir/inprogress/$crawlversion-sprint/ && \
   mkdir dgldir/inprogress/$crawlversion-tut/ && \
   mkdir dgldir/inprogress/$crawlversion-zotdef/ && \
