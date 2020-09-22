@@ -1,9 +1,6 @@
 # Pull base image.
 FROM ubuntu:18.04
 
-# ARGS
-ARG crawlversion
-
 # Install prerequisites
 RUN \
   apt-get --yes update && apt-get --yes upgrade && \
@@ -45,6 +42,9 @@ RUN \
   mkdir dgldir/ttyrec/ && \
   mkdir dgldir/data/menus/ && \
   mkdir dgldir/inprogress/
+
+# ARGS
+ARG crawlversion
 
 # Create crawl version specific directories
 RUN \
