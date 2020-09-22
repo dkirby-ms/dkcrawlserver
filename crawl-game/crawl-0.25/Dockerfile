@@ -1,3 +1,6 @@
+# ARGS
+ARG crawlversion
+
 # Pull base image.
 FROM ubuntu:18.04
 
@@ -30,3 +33,28 @@ RUN \
   make install && \
   cp ee virus /home/crawl/DGL/bin
 
+# Create directories
+RUN \
+  cd / && \
+  mkdir crawl-master && \
+  mkdir crawl-master/webserver/ && \
+  mkdir crawl-master/webserver/run/ && \
+  mkdir crawl-master/webserver/sockets/ && \
+  mkdir crawl-master/webserver/templates/ && \
+  mkdir dgldir && \
+  mkdir dgldir/data/ && \
+  mkdir dgldir/dumps/ && \
+  mkdir dgldir/morgue/ && \
+  mkdir dgldir/rcfiles/ && \
+  mkdir dgldir/ttyrec/ && \
+  mkdir dgldir/data/menus/ && \
+  mkdir dgldir/inprogress/
+
+# Create crawl version specific directories
+RUN \
+  mkdir dgldir/inprogress/$crawlversion-sprint/ && \
+  mkdir dgldir/inprogress/$crawlversion-tut/ && \
+  mkdir dgldir/inprogress/$crawlversion-zotdef/ && \
+  mkdir dgldir/inprogress/$crawlversion/ && \
+  mkdir dgldir/rcfiles/$crawlversion/ && \
+  mkdir dgldir/data/$crawlversion-settings/
