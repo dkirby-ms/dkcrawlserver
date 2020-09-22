@@ -48,10 +48,9 @@ RUN \
 
 # Create crawl version specific directories
 RUN \
-  echo ${crawlversion} && \
-  mkdir dgldir/inprogress/${crawlversion}-sprint/ && \
-  mkdir dgldir/inprogress/${crawlversion}-tut/ && \
-  mkdir dgldir/inprogress/${crawlversion}-zotdef/ && \
-  mkdir dgldir/inprogress/${crawlversion}/ && \
-  mkdir dgldir/rcfiles/${crawlversion}/ && \
-  mkdir dgldir/data/${crawlversion}-settings/
+  mkdir dgldir/inprogress/$crawlversion-sprint/ && \
+  mkdir dgldir/inprogress/$crawlversion-tut/ && \
+  mkdir dgldir/inprogress/$crawlversion-zotdef/ && \
+  mkdir dgldir/inprogress/$crawlversion/ && \
+  mkdir dgldir/rcfiles/$crawlversion/ && \
+  mkdir dgldir/data/$crawlversion-settings/
