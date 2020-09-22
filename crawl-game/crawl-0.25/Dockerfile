@@ -1,6 +1,9 @@
 # Pull base image.
 FROM ubuntu:18.04
 
+# ARGS
+ARG crawlversion
+
 # Install prerequisites
 RUN \
   apt-get --yes update && apt-get --yes upgrade && \
@@ -43,11 +46,9 @@ RUN \
   mkdir dgldir/data/menus/ && \
   mkdir dgldir/inprogress/
 
-# ARGS
-ARG crawlversion
-
 # Create crawl version specific directories
 RUN \
+  echo ${crawlversion} && \
   mkdir dgldir/inprogress/${crawlversion}-sprint/ && \
   mkdir dgldir/inprogress/${crawlversion}-tut/ && \
   mkdir dgldir/inprogress/${crawlversion}-zotdef/ && \
