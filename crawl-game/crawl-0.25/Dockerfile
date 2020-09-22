@@ -17,20 +17,17 @@ RUN \
   mkdir /home/crawl-dev/logs && \
   mkdir /home/crawl-dev/run
 
-# Download dgamelaunch
+# Download and build dgamelaunch
 RUN \
   cd /home/crawl-dev && \
   git clone git://github.com/crawl/dgamelaunch.git && \
   git clone git://github.com/crawl/dgamelaunch-config.git && \
-  git clone git://github.com/crawl/sizzell.git
-
-# Build dgamelaunch
-RUN \
+  git clone git://github.com/crawl/sizzell.git && \
   cd dgamelaunch && \
   ./autogen.sh --enable-debugfile --enable-sqlite --enable-shmem && \
   make && \
   make install && \
-  cp ee virus /home/crawl/DGL/bin
+  cp ee virus /bin
 
 # Create directories
 RUN \
