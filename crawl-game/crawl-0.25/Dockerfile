@@ -11,14 +11,11 @@ RUN \
   locale-gen en_US.UTF-8 && \
   dpkg-reconfigure locales
 
-# Create crawl-dev dirs
+# Download and build dgamelaunch
 RUN \
   mkdir /home/crawl-dev && \
   mkdir /home/crawl-dev/logs && \
-  mkdir /home/crawl-dev/run
-
-# Download and build dgamelaunch
-RUN \
+  mkdir /home/crawl-dev/run && \
   cd /home/crawl-dev && \
   git clone git://github.com/crawl/dgamelaunch.git && \
   git clone git://github.com/crawl/dgamelaunch-config.git && \
